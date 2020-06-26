@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+let obj = {
+    "animals": {
+        "dogs": {
+            "poodle": {},
+            "labrador": {},
+            "hound": {}
+        },
+        "cats": {
+            "tabby": {},
+            "siamese": {}
+        },
+        "birds": {
+            "parrot": {
+                "grey": {}
+            }
+        }
+    },
+    "plants": {
+        "trees": {}
+    }
+};
+var store = []
+function filePaths(obj, prefix = '') {
+  for (let key in obj) {
+    const curPath = `${prefix}/${key}`;
+    if (typeof obj[key] === 'object') {
+      store.push(curPath);      
+      filePaths(obj[key], curPath, store);
+    } else {
+      store.push(curPath);      
+    }
+  }
+  return store;
+}
+filePaths(obj)
+
+for(var i = 0; i < store.length; i++)
+{
+	for(var j = 0; j < store[i].length; j++)
+	{
+		store[i] = store[i].replace('/' , '.');
+	}
+}
+
+function checker(value) {
+  var search = ['cats'];
+
+  for (var i = 0; i < search.length; i++) {
+    if (value.indexOf(search[i]) > -1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+store = store.filter(checker);
+alert(store);
+console.log(store);
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+Write any program that you have worked on, and found it challenging in terms of new implementation. 
+Your code should be no more than 50 lines. Explain the problem statement and also explain how your code provides resolution to the problem.
+
+We have project in angularjs and google released new versions of angular.
+Architecture wise Angularjs and angular to totally different.
+I faced challenge to support older version and new version of angular. So created hybrid application. 
+We are downgrading controllers and services and writting code for components.
+Big challenge updation of technologies and quick learning and supporting application.
+Installing Angular & ngUpgrade
+- Removing Bootstrap from index.html
+<html>
+  <head>
+    <title>Amazing, Inc. Order System</title>
+  </head>
+  <body>
+      <navigation></navigation>
+      <div class="container" ng-view></div>
+  </body>
+</html>
+
+-  Changed the AngularJS Module
+- Created the Angular App Module
+	import { NgModule } from '@angular/core';
+	@NgModule({
+		imports: [
+			BrowserModule,
+			UpgradeModule
+		]
+	})
+	export class AppModule { }
+- Bootstrapping in the Angular Module
+- import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { UpgradeModule } from '@angular/upgrade/static';
+import moduleName from './app.module.ajs';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        UpgradeModule
+    ]
+})
+export class AppModule {
+    constructor(private upgrade: UpgradeModule) { }
+
+    ngDoBootstrap(){
+        this.upgrade.bootstrap(document.documentElement, [moduleName], {strictDi: true});
+    }
+}
+
+- Creating main.ts
+
+- Updating Webpack
+
+- Rewriting & Downgrading Component

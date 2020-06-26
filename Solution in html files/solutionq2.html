@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+const animal = [
+  "animals.dogs.poodle",
+ "animals.cats.tabby",
+ "animals.cats.siamese",
+ "animals.dogs.labrador",
+ "animals.dogs.hound",
+ "plants.trees",
+ "animals.birds.parrot.grey"
+]
+
+const output = {};
+function tree(iterator, outputDisplay) {
+    let map = outputDisplay;
+    for(const field of iterator) {
+        map[field] = map[field] || {};
+        map = map[field];
+    }
+}
+
+animal.map(field => field.split('.')).forEach(iterator => {
+    tree(iterator, output);
+});
+alert(JSON.stringify(output, null, 4));
+console.log(JSON.stringify(output, null, 4));
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
+
